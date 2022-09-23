@@ -4,14 +4,16 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
+import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
+import ru.netology.page.VerificationPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.SQLHelper.cleanDatabase;
 
 public class AuthTest {
     @AfterAll
-    static void tearDown() {
+    static void cleanData() {
         cleanDatabase();
     }
 
@@ -23,6 +25,8 @@ public class AuthTest {
         verificationPage.verifyVerificationPageVisibility();
         var verificationCode = SQLHelper.getVerificationCode();
         verificationPage.validVerify(verificationCode.getCode());
+
+
     }
 
     @Test
